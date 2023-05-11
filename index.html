@@ -4,9 +4,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="js/script.js" defer></script>
     <title>Boolzapp</title>
 </head>
 <body>
-    
+    <div class="app">
+        <div class="main-box">
+
+            <div class="user-row">
+                <div class="me">
+                    <img class="avatar" src="img/avatar_io.png" alt="">
+                    <div class="name">Christian</div>
+                </div>
+                
+                <div class="controls">
+                    <i class="fas fa-circle-notch btn"></i>
+                    <i class="fas fa-comment-alt btn"></i>
+                    <i class="fas fa-ellipsis-v btn"></i>
+                </div>
+                
+            </div>
+                
+            <div class="able-notification"></div>
+            <div class="contacts">
+                <ul>
+                    <li v-for="contact in contacts">
+                        {{ contact.name}}
+                    </li>
+                </ul>
+            </div>
+            
+
+        </div>
+
+
+        <div class="chat-box">
+
+            <div class="contact-row"></div>
+            <div class="message-content"></div>
+            <div class="text-message"></div>
+            
+        </div>
+
+    </div>
 </body>
 </html>

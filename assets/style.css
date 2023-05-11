@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background: linear-gradient(
+      to bottom,
+      #00A884 35%,
+      #F0F2F5 20%
+    );
+}
+  
+.app{
+    display: flex;
+    width: 85%;
+    height: 95%;
+    background-color: white;
+}
+
+.main-box{
+    width: 35%;
+    height: 100%;
+    background-color: aqua;
+}
+
+.chat-box{
+    width: 65%;
+    height: 100%;
+    background-color: blue;
+}
+
+.user-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
