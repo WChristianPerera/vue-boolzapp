@@ -171,15 +171,50 @@ const app = Vue.createApp({
 				}
 			],
 			activeContact: '',
-			newMessage: '',
 			searchText: '',
+			newMessage: '',
 		};
 	},
 	methods: {
 		selectContact(contact) {
 			this.activeContact = contact;
 		},
+		getLastMessage(contact) {
+			const lastMessage = contact.messages[contact.messages.length - 1];
+			return lastMessage ? lastMessage.message : '';
+		},
+		getLastMessageDate(contact) {
+			const lastMessage = contact.messages[contact.messages.length - 1];
+			return lastMessage ? lastMessage.date : '';
+		},
+		sendMessage() {
+			if (this.newMessage !== '') {
+			  const activeContact = this.contacts[this.activeIndex];
+			  const message = {
+				message: this.newMessage,
+				date: luxon.DateTime.now().toLocaleString(luxon.DateTime.DATETIME_SHORT),
+				status: 'sent',
+			  };
+			  activeContact.messages.push(message);
+			  this.newMessage = '';
+	  
+			  setTimeout(() => {
+				const response = {
+				  message: 'Ok',
+				  date: luxon.DateTime.now().toLocaleString(luxon.DateTime.DATETIME_SHORT),
+				  status: 'received',
+				};
+				activeContact.messages.push(response);
+			  }, 1000);
+			}
+		},
+		extractTimeFromDate(date) {
+			return date.split(' ')[1].slice(0, -3);
+		},
+	},
+	
 		
-    },
+		
 });
+
 app.mount('.app');

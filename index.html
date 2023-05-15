@@ -44,7 +44,7 @@
 
             <div class="searching">
                 <i class="fa fa-search icon" aria-hidden="true"></i>
-                <input type="text" class="search-bar" v-model="newMessage" @keyup.enter="sendMessage">
+                <input type="text" class="search-bar" v-model="searchText">
             </div>
             
             <div class="contacts">
@@ -97,7 +97,7 @@
 
             <div class="text-message">
                 <i class="far fa-smile btn"></i>
-                <input type="text" class="message-text" placeholder="Scrivi un messaggio">
+                <input type="text" class="message-text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMessage">
                 <i class="fa fa-microphone btn"></i>
             </div>
                 

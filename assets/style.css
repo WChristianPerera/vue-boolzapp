@@ -89,7 +89,7 @@ img{
 
 .contact{
     display: flex;
-    gap: 1.5rem;
+    gap: .5rem;
     border-inline-end: 1px solid #F8F8F8;
     
 }
