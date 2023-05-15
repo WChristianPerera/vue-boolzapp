@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js"></script>
     <script src="js/script.js" defer></script>
     <title>Boolzapp</title>
 </head>
@@ -15,24 +16,46 @@
         <div class="main-box">
 
             <div class="user-row">
+                
                 <div class="me">
-                    <img class="avatar" src="img/avatar_io.png" alt="">
+                    <img class="avatar" src="img/avatar_io.jpg" alt="">
                     <div class="name">Christian</div>
                 </div>
                 
                 <div class="controls">
-                    <i class="fas fa-circle-notch btn"></i>
-                    <i class="fas fa-comment-alt btn"></i>
-                    <i class="fas fa-ellipsis-v btn"></i>
+                    <i class="fas fa-circle-notch"></i>
+                    <i class="fas fa-comment-alt"></i>
+                    <i class="fas fa-ellipsis-v"></i>
                 </div>
                 
             </div>
                 
-            <div class="able-notification"></div>
+            <div class="able-notification">
+                <div class="bell">
+                    <i class="fa-solid fa-bell-slash text-light"></i>
+                </div>
+                <p>
+                    Ricevi notifiche di nuovi messaggi <br>
+                    <a href="">Attiva notifiche desktop</a>
+                </p> 
+            </div>
+                
+                
+
+            <div class="searching">
+                <i class="fa fa-search icon" aria-hidden="true"></i>
+                <input type="text" class="search-bar" v-model="newMessage" @keyup.enter="sendMessage">
+            </div>
+            
             <div class="contacts">
                 <ul>
-                    <li v-for="contact in contacts">
-                        {{ contact.name}}
+                    <li v-for="contact in contacts" :key="contact.name" @click="selectContact(contact)">
+                        <img :src="contact.avatar" alt="contact.name">
+                        <div class="user-info">
+                            <div class="name">{{ contact.name}}</div>
+                            <div class="last-message"> Ultimo messaggio inviato</div>
+                        </div>
+                        <div class="last-date">11/05/23</div>
                     </li>
                 </ul>
             </div>
@@ -43,12 +66,49 @@
 
         <div class="chat-box">
 
-            <div class="contact-row"></div>
-            <div class="message-content"></div>
-            <div class="text-message"></div>
+            <div class="contact-row">
+                <img class="avatar" :src="activeContact.avatar" alt="">
+                <div class="contact-info">
+                    <div class="name">{{ activeContact.name }}</div>
+                    <div class="last-access">Ultimo accesso</div>
+                </div>
+                <i class="fas fa-search btn"></i>
+                <i class="fas fa-paperclip btn"></i>
+                <i class="fas fa-ellipsis-v btn"></i>
+
+                    
+            </div>
+
+					
+
+
+
+            <div class="message-content">
+                <ul>
+                    <li v-for="message in activeContact.messages" :key="message.date" :class="{'sent': message.status === 'sent', 'received': message.status === 'received'}">
+                      <div class="message">
+                        <p>{{ message.message }}</p>
+                        <div class="date">{{ message.date }}</div>
+                      </div>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="text-message">
+                <i class="far fa-smile btn"></i>
+                <input type="text" class="message-text" placeholder="Scrivi un messaggio">
+                <i class="fa fa-microphone btn"></i>
+            </div>
+                
+                
+            </div>
             
         </div>
-
-    </div>
 </body>
 </html>
+
+                        
+                        
+
+                      

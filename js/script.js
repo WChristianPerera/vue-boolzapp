@@ -1,6 +1,7 @@
 const app = Vue.createApp({
 	data() {
 		return {
+			activeIndex: 0,
 			contacts: [
 				{
 					name: 'Michele',
@@ -169,7 +170,16 @@ const app = Vue.createApp({
 					],
 				}
 			],
+			activeContact: '',
+			newMessage: '',
+			searchText: '',
 		};
 	},
+	methods: {
+		selectContact(contact) {
+			this.activeContact = contact;
+		},
+		
+    },
 });
 app.mount('.app');
